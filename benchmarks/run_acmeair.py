@@ -14,8 +14,8 @@ import util
 
 experiments = (
 	jitserver.Experiment.LocalJIT,
-	jitserver.Experiment.JITServer,
-	jitserver.Experiment.AOTCache,
+	#jitserver.Experiment.JITServer,
+	#jitserver.Experiment.AOTCache,
 )
 
 
@@ -42,7 +42,7 @@ def main():
 			detailed_vlog=True,
 			server_extra_stats=True,
 			client_extra_stats=True,
-			jdk_ver=8,
+			jdk_ver=17,
 			debug=False,
 			portable_scc=False,
 			forceaot=True,
@@ -66,7 +66,7 @@ def main():
 			romclass_cache_partitions=None,
 			aotcache_name=None,
 			stop_sleep_time=2.0,# seconds
-			stop_timeout=10.0,# seconds
+			stop_timeout=600.0,# seconds
 			stop_attempts=6,
 			kill_remote_on_timeout=False,
 			save_javacore=True,
@@ -84,14 +84,14 @@ def main():
 		application_config=shared.ApplicationConfig(
 			docker_config=docker.DockerConfig(
 				ncpus=1,
-				memory="1g",
+				memory="10g",
 				pin_cpus=True,
 				network="host",
 			),
 			jvm_config=openj9.JVMConfig(
 				heap_size=None,
 				virtualized=False,
-				scc_size="96m",
+				scc_size="256m",
 				nojit=False,
 			),
 			populate_scc=False,
@@ -103,7 +103,7 @@ def main():
 			start_interval=None,# seconds
 			start_timeout=60.0,# seconds
 			sleep_time=1.0,# seconds
-			stop_timeout=10.0,# seconds
+			stop_timeout=600.0,# seconds
 			stop_attempts=6,
 			kill_remote_on_timeout=False,
 			javacore_interval=None,
@@ -152,7 +152,7 @@ def main():
 	cluster = shared.BenchmarkCluster(
 		config, acmeair.AcmeAir,
 		jitserver_hosts=[hosts[0]], db_hosts=[hosts[0]],
-		application_hosts=[hosts[1]], jmeter_hosts=[hosts[0]]
+		application_hosts=[hosts[0]], jmeter_hosts=[hosts[0]]
 	)
 
 	util.verbose = args.verbose

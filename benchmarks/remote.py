@@ -83,6 +83,7 @@ class RemoteProcess:
 				)
 
 			except subprocess.TimeoutExpired:
+				print("Timeout!")
 				if i == attempts - 1:
 					if kill_remote_on_timeout:
 						self.kill(signal.SIGKILL)

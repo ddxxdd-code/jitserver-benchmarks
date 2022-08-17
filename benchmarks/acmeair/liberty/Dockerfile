@@ -1,5 +1,13 @@
 FROM websphere-liberty:webProfile7
 
+USER root
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libunwind8 \
+    && rm -rf "/var/lib/apt/lists/"*
+
+USER 1001
+
 # Copy required files
 COPY --chown=1001:0 "mongo.properties" "server.xml" "/config/"
 COPY --chown=1001:0 "acmeair-webapp-2.0.0-SNAPSHOT.war" "/config/apps/"

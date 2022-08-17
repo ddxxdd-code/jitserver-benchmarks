@@ -40,6 +40,11 @@ touch "${messages_log_path}"
 chmod a=rw "${messages_log_path}"
 docker_args+=(-v "${messages_log_path}:/logs/messages.log")
 
+backtrace_log_path="${dir}/${name}/alloctrace.log"
+touch "${backtrace_log_path}"
+chmod a=rw "${backtrace_log_path}"
+docker_args+=(-v "${backtrace_log_path}:/output/backtrace.log")
+
 if [[ "${scc_path}" != "" ]]; then
 	scc_path=$(readlink -f "${scc_path}")
 	mkdir -p "${scc_path}"

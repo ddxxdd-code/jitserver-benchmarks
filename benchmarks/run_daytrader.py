@@ -42,7 +42,7 @@ def main():
 			detailed_vlog=True,
 			server_extra_stats=True,
 			client_extra_stats=True,
-			jdk_ver=8,
+			jdk_ver=17,
 			debug=False,
 			portable_scc=False,
 			forceaot=True,

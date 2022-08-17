@@ -900,13 +900,13 @@ def base_config():
 	return BenchmarkConfig(
 		name=None,
 		jitserver_config=jitserver.JITServerConfig(
-			jdk_ver=8,
+			jdk_ver=17,
 			nodelay_aotload=True,
 			disable_active_thread_thresholds=True,
 			server_scratch_space_factor=1,
 			share_romclasses=True,
 			stop_sleep_time=2.0,# seconds
-			stop_timeout=10.0,# seconds
+			stop_timeout=6000.0,# seconds
 			stop_attempts=6,
 			kill_remote_on_timeout=True,
 		),
@@ -926,7 +926,7 @@ def base_config():
 			duration=None,# seconds
 			summariser_interval=6,# seconds; minimum is 6
 			keep_scc=True,
-			stop_timeout=60,# seconds
+			stop_timeout=6000,# seconds
 		),
 		n_jitservers=1,
 		n_dbs=1,

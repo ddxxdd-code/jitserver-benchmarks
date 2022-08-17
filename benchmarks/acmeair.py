@@ -62,7 +62,7 @@ class AcmeAir(liberty.Liberty):
 			scc_size="96m",
 		)
 		result.application_config.start_timeout = 60.0# seconds
-		result.application_config.stop_timeout = 10.0# seconds
+		result.application_config.stop_timeout = 600.0# seconds
 		result.application_config.stop_attempts = 6
 		return result
 

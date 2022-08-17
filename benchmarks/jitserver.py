@@ -45,7 +45,7 @@ class JITServerConfig:
 	def __init__(self, *,
 		server_vlog=False, client_vlog=False, detailed_vlog=False,
 		server_extra_stats=False, client_extra_stats=False,
-		server_resource_stats=False, jdk_ver=8, debug=False,
+		server_resource_stats=False, jdk_ver=17, debug=False,
 		portable_scc=False, forceaot=False, nodelay_aotload=False,
 		svm_at_startup=False, client_threads=None, localjit_memlimit=None,
 		server_threads=None, server_codecache=None, server_memlimit=None,
@@ -206,7 +206,7 @@ class JITServerConfig:
 
 		if jit_opts:
 			opts = ",".join(jit_opts)
-			args.extend(("-Xjit:{}".format(opts), "-Xaot:{}".format(opts)))
+			args.extend(("-Xjit:{}".format(opts)+",zPrintBackTrace=2,zCollectBackTrace=4,zBackTraceFile=/output/backtrace.log", "-Xaot:{}".format(opts)))
 		return args
 
 	stats_env_vars = (
